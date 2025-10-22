@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common'
+import { AuthorsResolver } from './graphql/resolvers/authors.resolver'
+import { DatabaseModule } from '@/database/database.module'
 
 /**
  * Authors Module
@@ -16,5 +18,8 @@ import { Module } from '@nestjs/common'
  * - Gerencia dependências e injeção de dependência
  * - Pode importar outros módulos ou exportar providers
  */
-@Module({})
+@Module({
+  imports: [DatabaseModule],
+  providers: [AuthorsResolver],
+})
 export class AuthorsModule {}
