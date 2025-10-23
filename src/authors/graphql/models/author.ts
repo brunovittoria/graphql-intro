@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Post } from '@/posts/graphql/models/post'
 
 /**
  * Author GraphQL Model
@@ -28,4 +29,19 @@ export class Author {
 
   @Field()
   createdAt: Date
+
+  /**
+   * Campo de relacionamento com Posts
+   *
+   * @Field(() => [Post]) - Define um array de Posts
+   * - [Post] significa array de objetos Post
+   * - Este campo será resolvido usando Field Resolvers
+   *
+   * Relacionamentos em GraphQL:
+   * - Um Author pode ter muitos Posts (1:N)
+   * - O campo posts será resolvido dinamicamente quando solicitado
+   * - Se o cliente não pedir posts, a query não será executada (lazy loading)
+   */
+  @Field(() => [Post])
+  posts: Post[]
 }
