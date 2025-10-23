@@ -121,8 +121,32 @@ input UpdateAuthorInput {
 
 **Diferença entre Type e Input**:
 
-- **Type**: Para dados que são RETORNADOS
-- **Input**: Para dados que são ENVIADOS
+- **Type**: Para dados que são RETORNADOS Do servidor para o cliente.
+
+Quando são usados:
+Em queries - quando o cliente pede dados
+Em mutations - quando o servidor retorna o resultado de uma operação
+
+- **Input**: Para dados que são ENVIADOS do cliente para o servidor.
+
+Quando são usados:
+Em mutations - quando o cliente envia dados para criar/atualizar
+
+Exemplo:
+
+```
+mutation {
+  createAuthor(input: {
+    name: "Maria Santos"     # ← ENVIADO (Input)
+    email: "maria@email.com" # ← ENVIADO (Input)
+  }) {
+    id                       # ← RETORNADO (Type)
+    name                     # ← RETORNADO (Type)
+    email                    # ← RETORNADO (Type)
+    createdAt                # ← RETORNADO (Type)
+  }
+}
+```
 
 **📁 Exemplos na POC**:
 
